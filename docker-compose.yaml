@@ -1,0 +1,12 @@
+version: "3.3"
+
+services:
+  rqrx_witness:
+    image: ghcr.io/r-squared-project/r-squared-core:1.0.0
+    platform: linux/x86_64
+    ports:
+      - "8090:8090"
+    env_file:
+      - .env
+    command: |
+      /usr/local/bin/witness_node --rpc-endpoint=127.0.0.1:8090 --witness-id "\"$WITNESS_ID\"" --private-key "[\"$WITNESS_PUB_KEY\", \"$WITNESS_WIF_KEY\"]"
